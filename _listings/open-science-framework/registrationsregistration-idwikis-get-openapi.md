@@ -3,14 +3,19 @@ swagger: "2.0"
 x-collection-name: Open Science Framework
 x-complete: 0
 info:
-  title: Open Science Framework Retrieve a Wiki
+  title: Open Science Framework List all wikis
   description: |-
-    Retrieves the details about a specific wiki.
-    A wiki is a collection of markdown text pages that can be used to describe the project or dataset of contained in the attached node.
+    A paginated list of the registration's wiki pages
     ####Returns
-    Returns a JSON object with a `data` key containing the representation of the requested wiki, if the request was successful.
+    A list of all registration's current wiki page versions ordered by their date_modified. Each resource contains the full representation of the wiki, meaning additional requests to an individual wiki's detail view are not necessary.
 
-    If the request is unsuccessful, an `errors` key containing information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    #### Filtering
+    Wiki pages can be filtered based on their `name` and `date_modified` fields.
+    + `filter[name]=<Str>` -- filter wiki pages by name
+    + `filter[date_modified][comparison_operator]=YYYY-MM-DDTH:M:S` -- filter wiki pages based on date modified.
+
+    Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
   contact:
     name: OSF
     url: https://osf.io/support
@@ -83,28 +88,6 @@ paths:
       - Registrations
       - Registration
       - Wikis
-  /wikis/{wiki_id}/:
-    get:
-      summary: Retrieve a Wiki
-      description: |-
-        Retrieves the details about a specific wiki.
-        A wiki is a collection of markdown text pages that can be used to describe the project or dataset of contained in the attached node.
-        ####Returns
-        Returns a JSON object with a `data` key containing the representation of the requested wiki, if the request was successful.
-
-        If the request is unsuccessful, an `errors` key containing information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
-      operationId: wiki_read
-      x-api-path-slug: wikiswiki-id-get
-      parameters:
-      - in: path
-        name: wiki_id
-        description: The unique identifier of the wiki
-      responses:
-        200:
-          description: OK
-      tags:
-      - Wikis
-      - Wiki
 x-streamrank:
   polling_total_time_average: 0
   polling_size_download_average: 0

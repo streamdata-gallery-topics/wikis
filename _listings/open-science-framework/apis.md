@@ -12,11 +12,55 @@ image: ""
 x-kinRank: "7"
 x-alexaRank: "0"
 tags: Wikis
-created: "2018-08-26"
-modified: "2018-08-26"
+created: "2018-08-28"
+modified: "2018-08-28"
 url: https://raw.githubusercontent.com/streamdata-gallery-topics/wikis/master/_listings/open-science-framework/apis.md
 specificationVersion: "0.14"
 apis:
+- name: Open Science Framework - List all wikis
+  x-api-slug: nodesnode-idwikis-get
+  description: |-
+    List of wiki pages on a node.
+    ####Returns
+    Paginated list of the node's current wiki page versions ordered by their date_modified. Each resource contains the full representation of the wiki, meaning additional requests to an individual wiki's detail view are not necessary.
+
+    Note that if an anonymous view_only key is being used, the user relationship will not be exposed.
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    #### Filtering
+    Wiki pages can be filtered based on their `name` and `date_modified` fields.
+    + `filter[name]=<Str>` -- filter wiki pages by name
+    + `filter[date_modified][comparison_operator]=YYYY-MM-DDTH:M:S` -- filter wiki pages based on date modified.
+
+    Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
+  image: ""
+  humanURL: https://cos.io
+  baseURL: https://test-api.osf.io//v2
+  tags: Research, Science, API Provider, Profiles, General Data, Service API
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/streamdata-gallery-topics/wikis/master/_listings/open-science-framework/nodesnode-idwikis-get-openapi.md
+- name: Open Science Framework - List all wikis
+  x-api-slug: registrationsregistration-idwikis-get
+  description: |-
+    A paginated list of the registration's wiki pages
+    ####Returns
+    A list of all registration's current wiki page versions ordered by their date_modified. Each resource contains the full representation of the wiki, meaning additional requests to an individual wiki's detail view are not necessary.
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    #### Filtering
+    Wiki pages can be filtered based on their `name` and `date_modified` fields.
+    + `filter[name]=<Str>` -- filter wiki pages by name
+    + `filter[date_modified][comparison_operator]=YYYY-MM-DDTH:M:S` -- filter wiki pages based on date modified.
+
+    Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
+  image: ""
+  humanURL: https://cos.io
+  baseURL: https://test-api.osf.io//v2
+  tags: Research, Science, API Provider, Profiles, General Data, Service API
+  properties:
+  - type: x-openapi-spec
+    url: https://raw.githubusercontent.com/streamdata-gallery-topics/wikis/master/_listings/open-science-framework/registrationsregistration-idwikis-get-openapi.md
 - name: Open Science Framework - Retrieve a Wiki
   x-api-slug: wikiswiki-id-get
   description: |-
